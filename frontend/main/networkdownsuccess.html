@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hyperledger Fabric链码动态部署系统</title>
+  
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="frontend/main/css/vendors_css.css">
+	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="frontend/main/css/style.css">
+	<link rel="stylesheet" href="frontend/main/css/skin_color.css">	
+
+</head>
+<body class="hold-transition theme-primary bg-gradient-primary">
+	
+	<section class="error-page h-p100">
+		<div class="container h-p100">
+		  <div class="row h-p100 align-items-center justify-content-center text-center">
+			  <div class="col-lg-7 col-md-10 col-12">
+				  <div class="rounded5 bg-white-10 pb-50">
+                      {{if .}}
+					  <h1 class="text-white font-size-180 font-weight-bold error-page-title">成功</h1>
+					  <h6 class="px-30 text-white">[NetworkDown] fabric network down Successful</h6>				  
+                      <div class="text-white mt-30"><a href="/shownetwork" class="btn btn-success">返回</a></div>
+                      {{else}}
+                      <h1 class="text-white font-size-180 font-weight-bold error-page-title">失败</h1>
+					  <h6 class="px-30 text-white">[NetworkDown] fabric network down Failed</h6>				  
+                      <div class="text-white mt-30"><a href="/shownetwork" class="btn btn-danger">返回</a></div>
+                      {{end}}	
+				  </div>
+			  </div>				
+		  </div>
+		</div>
+	</section>
+	
+
+	<!-- Vendor JS -->
+	<script src="frontend/main/js/vendors.min.js"></script>
+
+
+</body>
+</html>

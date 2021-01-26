@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hyperledger Fabric链码动态部署系统</title>
+
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="frontend/main/css/vendors_css.css">
+
+    <!-- Style-->
+    <link rel="stylesheet" href="frontend/main/css/style.css">
+    <link rel="stylesheet" href="frontend/main/css/skin_color.css">
+
+</head>
+
+<body class="hold-transition light-skin sidebar-mini theme-primary">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <div class="d-flex align-items-center logo-box pl-20">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <!-- logo-->
+                    <div class="logo-lg">
+                        <span class="light-logo"><img src="frontend/images/logo-dark-text.png" alt="logo"></span>
+                        <span class="dark-logo"><img src="frontend/images/logo-light-text.png" alt="logo"></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top pl-10">
+                <!-- Sidebar toggle button-->
+                <div class="app-menu">
+                    <ul class="header-megamenu nav">
+                        <li class="btn-group nav-item d-md-none">
+                            <a href="#" class="waves-effect waves-light nav-link rounded push-btn"
+                                data-toggle="push-menu" role="button">
+                                <img src="frontend/images/svg-icon/collapse.svg" class="img-fluid svg-icon" alt="">
+                            </a>
+                        </li>
+                        <li class="btn-group d-md-inline-flex d-none">
+                            <div class="search-bx ml-10">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="查找" aria-label="Search"
+                                            aria-describedby="button-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="submit" id="button-addon2"><img
+                                                    src="frontend/images/search.svg" class="img-fluid" alt="search"></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar-->
+            <section class="sidebar">
+                <!-- sidebar menu-->
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header"> 部署流程 </li>
+                    <li>
+                        <a href="frontend/main/networkup.html">
+                            <img src="frontend/images/dashboard.svg" class="svg-icon" alt="">
+                            <span>启动测试网络</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="frontend/main/createchannel.html">
+                            <img src="frontend/images/layout.svg" class="svg-icon" alt="">
+                            <span>创建通道</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="frontend/main/uploadcc.html">
+                            <img src="frontend/images/pages.svg" class="svg-icon" alt="">
+                            <span>上传链码源码</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="frontend/main/deploycc.html">
+                            <img src="frontend/images/exchange.svg" class="svg-icon" alt="">
+                            <span>模拟部署链码</span>
+                        </a>
+                    </li>
+
+                    <li class="header"> 部署结果 </li>
+                    <li>
+                        <a href="/shownetwork">
+                            <img src="frontend/images/forms2.svg" class="svg-icon" alt="">
+                            <span>已启动网络</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="frontend/main/showchannel.html">
+                            <img src="frontend/images/multilevel.svg" class="svg-icon" alt="">
+                            <span>已创建通道</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/showcontract">
+                            <img src="frontend/images/forms1.svg" class="svg-icon" alt="">
+                            <span>已部署链码</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </section>
+        </aside>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="container-full">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
+                            <h3 class="page-title">已部署的链码信息</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h4 class="box-title">链码相关信息</h4>
+                                </div>
+                                {{if .}}
+                                {{range .}}
+                                <div class="box-body ribbon-box">
+                                    <div class="ribbon ribbon-info">{{.Name}}</div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered no-margin">
+                                            <tbody>
+                                                <tr>
+                                                    <td>所属通道</td>
+                                                    <td>{{.Channel}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>版本号</td>
+                                                    <td>{{.Version}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>背书插件</td>
+                                                    <td>{{.Endorse}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>验证插件</td>
+                                                    <td>{{.Validation}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>链码定义批准情况</td>
+                                                    <td>{{.Approve}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {{end}}
+                                {{else}}
+                                <div class="alert alert-warning text-center">未部署任何链码</div>
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </section>
+            <!-- /.content -->
+
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Vendor JS -->
+    <script src="frontend/main/js/vendors.min.js"></script>
+    <script src="frontend/main/js/pages/form-validation.js"></script>
+
+</body>
+
+</html>
