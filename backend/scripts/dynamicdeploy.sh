@@ -37,7 +37,11 @@ if [ "$CC_SRC_LANGUAGE" = "go" -o "$CC_SRC_LANGUAGE" = "golang" ] ; then
 	echo Vendoring Go dependencies ...
 	pushd ../chaincode/$CHAINCODE_NAME/$CC_SRC_LANGUAGE
   #pushd $GOPATH/src/contractdeploy/chaincode
-	GO111MODULE=on go mod vendor
+	#GO111MODULE=on go mod vendor
+  go mod init
+  go env -w GOPROXY=https://goproxy.io,direct
+  go env -w GO111MODULE=on
+  go mod vendor
 	popd
 	echo Finished vendoring Go dependencies
 
@@ -94,7 +98,7 @@ installChaincode() {
   ORG=$1
   setGlobals $ORG
   set -x
-  peer lifecycle chaincode install $CHAINCODE_NAME.tar.gz >&log.txt
+  peer lifecycle chaincode install ${CHAINCODE_NAME}.tar.gz >&log.txt
   res=$?
   set +x
   cat log.txt
