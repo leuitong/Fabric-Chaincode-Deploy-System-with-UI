@@ -3,5 +3,4 @@ This project can start Fabric test network and deploy chaincode through web page
 
 # Todo
 * The contract deployment takes too long to make the frontend pages not to jump
-* Upload contracts page
-* Query channels page
+* Show network info somtimes becomes wrong
