@@ -18,6 +18,7 @@ func DeployChaincode(w http.ResponseWriter, r *http.Request) {
 	//fn := r.Form[filename][0]
 
 	fmt.Printf("[+] begin to deploy chaincode %s (%s,%s) in %s channel", ccn, lang, v, cn)
+	t := template.Must(template.ParseFiles("frontend/main/deploysuccess.html"))
 	command := `cd backend/scripts && ./dynamicdeploy.sh ` + cn + ` ` + ccn + ` ` + lang + ` ` + v
 	cmd := exec.Command("/bin/bash", "-c", command)
 
@@ -31,7 +32,6 @@ func DeployChaincode(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("\n")
 
 	fmt.Printf("[+] deploy chaincode fabcar in %s successful.\n", cn)
-	t := template.Must(template.ParseFiles("frontend/main/deploysuccess.html"))
 	t.Execute(w, err == nil)
 	//fmt.Fprintf(w, "[DeployChaincode] deploy chaincode fabcar in %s channel successful\n", cn)
 }

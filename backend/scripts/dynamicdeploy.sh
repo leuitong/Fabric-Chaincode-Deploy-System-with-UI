@@ -1,4 +1,6 @@
 #!/bin/bash
+cd ~/go/src/github.com/hyperledger/fabric-samples/test-network
+
 export PATH=${PWD}/../bin:$PATH
 export FABRIC_CFG_PATH=$PWD/../config/
 export CORE_PEER_TLS_ENABLED=true
@@ -7,15 +9,13 @@ export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.e
 export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 export CORE_PEER_ADDRESS=localhost:7051
 
-cd ~/go/src/github.com/hyperledger/fabric-samples/test-network
-
 CHANNEL_NAME="$1"
 CHAINCODE_NAME="$2"
 CC_SRC_LANGUAGE="$3"
 VERSION="$4"
 
 : ${CHANNEL_NAME:="mychannel"}
-: ${CC_SRC_LANGUAGE:="golang"}
+: ${CC_SRC_LANGUAGE:="go"}
 : ${VERSION:="1"}
 : ${DELAY:="3"}
 : ${MAX_RETRY:="5"}
@@ -24,12 +24,19 @@ CC_SRC_LANGUAGE=`echo "$CC_SRC_LANGUAGE" | tr [:upper:] [:lower:]`
 
 FABRIC_CFG_PATH=$PWD/../config/
 
+cd ../chaincode
+mkdir -p $CHAINCODE_NAME/$CC_SRC_LANGUAGE
+cp -f $GOPATH/src/contractdeploy/chaincode/$CHAINCODE_NAME.$CC_SRC_LANGUAGE $CHAINCODE_NAME/$CC_SRC_LANGUAGE
+cd ../test-network
+
 if [ "$CC_SRC_LANGUAGE" = "go" -o "$CC_SRC_LANGUAGE" = "golang" ] ; then
 	CC_RUNTIME_LANGUAGE=golang
 	CC_SRC_PATH="../chaincode/$CHAINCODE_NAME/$CC_SRC_LANGUAGE/"
+	#CC_SRC_PATH="$GOPATH/src/contractdeploy/chaincode"
 
 	echo Vendoring Go dependencies ...
 	pushd ../chaincode/$CHAINCODE_NAME/$CC_SRC_LANGUAGE
+  #pushd $GOPATH/src/contractdeploy/chaincode
 	GO111MODULE=on go mod vendor
 	popd
 	echo Finished vendoring Go dependencies

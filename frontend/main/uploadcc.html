@@ -46,16 +46,6 @@
             </li>
             <li class="btn-group d-md-inline-flex d-none">
               <div class="search-bx ml-10">
-                <form>
-                  <div class="input-group">
-                    <input type="search" class="form-control" placeholder="查找" aria-label="Search"
-                      aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn" type="submit" id="button-addon2"><img src="../images/search.svg"
-                          class="img-fluid" alt="search"></button>
-                    </div>
-                  </div>
-                </form>
               </div>
             </li>
           </ul>
@@ -146,33 +136,33 @@
               <!-- <h6 class="box-subtitle">For multiple file upload put class <code>.dropzone</code> to form.</h6>-->
             </div>
             <div class="box-body">
-              <form action="/uploadsuccess" method="POST">
+              <form action="/uploadsuccess" method="POST", enctype="multipart/form-data">
                 <div class="form-group">
                   <h5>上传链码文件<span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="file" name="file" class="form-control" required> </div>
+                    <input type="file" name="ccfile" class="form-control" required> </div>
                 </div>
                 <div class="form-group">
                   <h5>选择链码语言<span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <select name="select" id="select" required class="form-control">
-                      <option value="">选择链码语言</option>
-                      <option value="1">Golang</option>
-                      <option value="2">Java</option>
-                      <option value="3">Nodejs</option>
+                    <select name="lang" id="select" required class="form-control">
+                      <option disabled="disabled" value="">选择链码语言</option>
+                      <option value="go">Golang</option>
+                      <option value="java">Java</option>
+                      <option value="js">Nodejs</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <h5>链码名称 <span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="text" name="text" class="form-control" required
+                    <input type="text" name="ccname" class="form-control" required
                       data-validation-required-message="This field is required"> </div>
                 </div>
                 <div class="form-group">
                   <h5>链码版本号 <span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="text" name="text" class="form-control" required
+                    <input type="text" name="ccversion" class="form-control" required
                       data-validation-required-message="This field is required"> </div>
                 </div>
                 <div class="flexbox justify-content-center">

@@ -9,7 +9,8 @@ import (
 )
 
 func ShowContract(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("[+] chaincode display")
+	fmt.Printf("[+] chaincode display\n")
+	t := template.Must(template.ParseFiles("frontend/main/showcontract.html"))
 	command := `cd backend/scripts && ./showcontract.sh`
 	cmd := exec.Command("/bin/bash", "-c", command)
 
@@ -20,7 +21,6 @@ func ShowContract(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	outputcontracts := unmarshal.UnmarshalContract(output)
-	t := template.Must(template.ParseFiles("frontend/main/showcontract.html"))
 	t.Execute(w, outputcontracts)
 	//fmt.Fprintf(w, string(output))
 }

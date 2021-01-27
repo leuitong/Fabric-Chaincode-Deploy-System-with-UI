@@ -9,7 +9,8 @@ import (
 
 func NetworkDown(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[+] fabric network down")
-	command := `cd ~/go/src/github.com/hyperledger/fabric-samples/test-network && ./network.sh down`
+	t := template.Must(template.ParseFiles("frontend/main/networkdownsuccess.html"))
+	command := `cd ~/go/src/github.com/hyperledger/fabric-samples/test-network && ./network.sh down && cd ~/go/src/contractdeploy/cache && rm -rf`
 	cmd := exec.Command("/bin/bash", "-c", command)
 
 	//err := cmd.Run()
@@ -25,6 +26,5 @@ func NetworkDown(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[+] fabric network down successful\n")
 
 	//fmt.Fprintf(w, "[NetworkDown] fabric network down Successful\n")
-	t := template.Must(template.ParseFiles("frontend/main/networkdownsuccess.html"))
 	t.Execute(w, err == nil)
 }

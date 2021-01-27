@@ -9,7 +9,8 @@ import (
 )
 
 func ShowNetwork(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("[+] fabric network display")
+	fmt.Printf("[+] fabric network display\n")
+	t := template.Must(template.ParseFiles("frontend/main/shownetwork.html"))
 	command := `docker ps | grep 0.0.0.0:7051 && docker ps | grep 0.0.0.0:9051 && docker ps | grep orderer`
 	cmd := exec.Command("/bin/bash", "-c", command)
 
@@ -23,7 +24,6 @@ func ShowNetwork(w http.ResponseWriter, r *http.Request) {
 	//}
 
 	outputnodes := unmarshal.UnmarshalNetwork(output)
-	t := template.Must(template.ParseFiles("frontend/main/shownetwork.html"))
 	t.Execute(w, outputnodes)
 	//fmt.Fprintf(w, string(output))
 }

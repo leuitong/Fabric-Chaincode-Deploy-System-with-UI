@@ -32,9 +32,10 @@ func main() {
 	http.HandleFunc("/networkupsuccess", handler.NetworkUp)
 	http.HandleFunc("/networkdownsuccess", handler.NetworkDown)
 	http.HandleFunc("/createchannelsuccess", handler.CreateChannel)
-	http.HandleFunc("/upload", handler.UploadChainCode)
+	http.HandleFunc("/uploadsuccess", handler.UploadChainCode)
 	http.HandleFunc("/deploysuccess", handler.DeployChaincode)
 	http.HandleFunc("/shownetwork", handler.ShowNetwork)
+	http.HandleFunc("/showchannel", handler.ShowChannel)
 	http.HandleFunc("/showcontract", handler.ShowContract)
 	err := http.ListenAndServe(":"+PORT, nil) // 设置监听的端口
 	if err != nil {

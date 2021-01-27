@@ -11,11 +11,11 @@
   <title>Hyperledger Fabric链码动态部署系统</title>
 
   <!-- Vendors Style-->
-  <link rel="stylesheet" href="css/vendors_css.css">
+  <link rel="stylesheet" href="frontend/main/css/vendors_css.css">
 
   <!-- Style-->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/skin_color.css">
+  <link rel="stylesheet" href="frontend/main/css/style.css">
+  <link rel="stylesheet" href="frontend/main/css/skin_color.css">
 
 </head>
 
@@ -28,8 +28,8 @@
         <a href="index.html" class="logo">
           <!-- logo-->
           <div class="logo-lg">
-            <span class="light-logo"><img src="../images/logo-dark-text.png" alt="logo"></span>
-            <span class="dark-logo"><img src="../images/logo-light-text.png" alt="logo"></span>
+            <span class="light-logo"><img src="frontend/images/logo-dark-text.png" alt="logo"></span>
+            <span class="dark-logo"><img src="frontend/images/logo-light-text.png" alt="logo"></span>
           </div>
         </a>
       </div>
@@ -41,21 +41,11 @@
             <li class="btn-group nav-item d-md-none">
               <a href="#" class="waves-effect waves-light nav-link rounded push-btn" data-toggle="push-menu"
                 role="button">
-                <img src="../images/svg-icon/collapse.svg" class="img-fluid svg-icon" alt="">
+                <img src="frontend/images/svg-icon/collapse.svg" class="img-fluid svg-icon" alt="">
               </a>
             </li>
             <li class="btn-group d-md-inline-flex d-none">
               <div class="search-bx ml-10">
-                <form>
-                  <div class="input-group">
-                    <input type="search" class="form-control" placeholder="查找" aria-label="Search"
-                      aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn" type="submit" id="button-addon2"><img src="../images/search.svg"
-                          class="img-fluid" alt="search"></button>
-                    </div>
-                  </div>
-                </form>
               </div>
             </li>
           </ul>
@@ -67,63 +57,63 @@
     <aside class="main-sidebar">
       <!-- sidebar-->
       <section class="sidebar">
-          <!-- sidebar menu-->
+        <!-- sidebar menu-->
 
-          <ul class="sidebar-menu" data-widget="tree">
-              <li class="header"> 部署流程 </li>
-              <li>
-                  <a href="networkup.html">
-                      <img src="../images/dashboard.svg" class="svg-icon" alt="">
-                      <span>启动测试网络</span>
-                  </a>
-              </li>
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header"> 部署流程 </li>
+          <li>
+            <a href="frontend/main/networkup.html">
+              <img src="frontend/images/dashboard.svg" class="svg-icon" alt="">
+              <span>启动测试网络</span>
+            </a>
+          </li>
 
-              <li>
-                  <a href="createchannel.html">
-                      <img src="../images/layout.svg" class="svg-icon" alt="">
-                      <span>创建通道</span>
-                  </a>
-              </li>
+          <li>
+            <a href="frontend/main/createchannel.html">
+              <img src="frontend/images/layout.svg" class="svg-icon" alt="">
+              <span>创建通道</span>
+            </a>
+          </li>
 
-              <li>
-                  <a href="uploadcc.html">
-                      <img src="../images/pages.svg" class="svg-icon" alt="">
-                      <span>上传链码源码</span>
-                  </a>
-              </li>
+          <li>
+            <a href="frontend/main/uploadcc.html">
+              <img src="frontend/images/pages.svg" class="svg-icon" alt="">
+              <span>上传链码源码</span>
+            </a>
+          </li>
 
-              <li>
-                  <a href="deploycc.html">
-                      <img src="../images/exchange.svg" class="svg-icon" alt="">
-                      <span>模拟部署链码</span>
-                  </a>
-              </li>
+          <li>
+            <a href="frontend/main/deploycc.html">
+              <img src="frontend/images/exchange.svg" class="svg-icon" alt="">
+              <span>模拟部署链码</span>
+            </a>
+          </li>
 
-              <li class="header"> 部署结果 </li>
-              <li>
-                  <a href="/shownetwork">
-                      <img src="../images/forms2.svg" class="svg-icon" alt="">
-                      <span>已启动网络</span>
-                  </a>
-              </li>
+          <li class="header"> 部署结果 </li>
+          <li>
+            <a href="/shownetwork">
+              <img src="frontend/images/forms2.svg" class="svg-icon" alt="">
+              <span>已启动网络</span>
+            </a>
+          </li>
 
-              <li>
-                  <a href="/showchannel">
-                      <img src="../images/multilevel.svg" class="svg-icon" alt="">
-                      <span>已创建通道</span>
-                  </a>
-              </li>
+          <li>
+            <a href="/showchannel">
+              <img src="frontend/images/multilevel.svg" class="svg-icon" alt="">
+              <span>已创建通道</span>
+            </a>
+          </li>
 
-              <li>
-                  <a href="/showcontract">
-                      <img src="../images/forms1.svg" class="svg-icon" alt="">
-                      <span>已部署链码</span>
-                  </a>
-              </li>
+          <li>
+            <a href="/showcontract">
+              <img src="frontend/images/forms1.svg" class="svg-icon" alt="">
+              <span>已部署链码</span>
+            </a>
+          </li>
 
-          </ul>
+        </ul>
       </section>
-  </aside>
+    </aside>
 
 
 
@@ -146,8 +136,11 @@
                 <div class="box-header with-border">
                   <h4 class="box-title">通道内区块链信息</h4>
                 </div>
+                {{if .}}
+                {{range .}}
+
                 <div class="box-body ribbon-box">
-                  <div class="ribbon ribbon-info">mychannel</div>
+                  <div class="ribbon ribbon-info">{{.ChannelName}}</div>
                 </div>
                 <div class="box-body">
                   <div class="table-responsive">
@@ -155,48 +148,34 @@
                       <thead>
                         <tr>
                           <th>区块序号</th>
-                          <th>区块Hash</th>
-                          <th>前一区块Hash</th>
+                          <th>区块Hash(区块体Hash)</th>
+                          <th>前一区块Hash(前一区块头Hash)</th>
                           <th>区块类型</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1
-                          </td>
-                          <td>GCBPFKBYAELDCEP13GYFRQNDQ71/7GC6PSJNLHVVWWI=
-                          </td>
-                          <td>
-                            GOT5GR5P//ITQ71IDILKMMZPA3HHPHGUYXE6ECGGZ6I=
-                          </td>
-                          <td>配置区块</td>
-                      
-                        </tr>
-                        <tr>
-                          <td>2
-                          </td>
-                          <td>ZTDWFC1UUIU3SVH6LVYSPAPMSB5E6U4ZZWTY+EJVVKE=
-                          </td>
-                          <td>
-                            GCBPFKBYAELDCEP13GYFRQNDQ71/7GC6PSJNLHVVWWI=
-                          </td>
-                          <td>配置区块</td>
-                        </tr>
-                        <tr>
-                          <td>3
-                          </td>
-                          <td>K6ERMNFPYWCNZDWVWAJUWTGEFEW9IU6RZ1SCLXIUA2W=
 
-                          </td>
-                          <td>
-                            ZTDWFC1UUIU3SVH6LVYSPAPMSB5E6U4ZZWTY+EJVVKE=
-                          </td>
-                          <td>交易区块</td>
+                        {{with .Bh}}
+                        {{range .}}
+                        <tr>
+                          <td>{{.Num}}</td>
+                          <td>{{.Hash}}</td>
+                          <td>{{.Prehash}}</td>
+                          <td>{{if .Blocktype}} 交易区块 {{else}} 配置区块 {{end}} </td>
                         </tr>
+                        {{end}}
+
+                        {{end}}
+
                       </tbody>
                     </table>
                   </div>
                 </div>
+
+                {{end}}
+                {{else}}
+                <div class="alert alert-warning text-center">未创建任何通道</div>
+                {{end}}
               </div>
             </div>
           </div>
