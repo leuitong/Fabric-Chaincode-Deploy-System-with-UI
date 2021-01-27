@@ -31,7 +31,7 @@ func DeployChaincode(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf(string(output))
 	fmt.Printf("\n")
 
-	fmt.Printf("[+] deploy chaincode fabcar in %s successful.\n", cn)
+	fmt.Printf("[+] deploy chaincode %s in %s successful.\n", ccn, cn)
 	t.Execute(w, err == nil)
 	//fmt.Fprintf(w, "[DeployChaincode] deploy chaincode fabcar in %s channel successful\n", cn)
 }
