@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hyperledger Fabric链码动态部署系统</title>
+    <title>BUAA-智能合约动态部署系统</title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="frontend/main/css/vendors_css.css">
@@ -74,18 +74,24 @@
                             <span>创建通道</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="http://127.0.0.1:7070/playground" target="blank">
+                          <img src="frontend/images/ico.svg" class="svg-icon" alt="">
+                          <span>智能合约验证</span>
+                        </a>
+                      </li>
 
                     <li>
                         <a href="frontend/main/uploadcc.html">
                             <img src="frontend/images/pages.svg" class="svg-icon" alt="">
-                            <span>上传链码源码</span>
+                            <span>上传智能合约</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="frontend/main/deploycc.html">
                             <img src="frontend/images/exchange.svg" class="svg-icon" alt="">
-                            <span>模拟部署链码</span>
+                            <span>部署智能合约</span>
                         </a>
                     </li>
 
@@ -107,7 +113,7 @@
                     <li>
                         <a href="/showcontract">
                             <img src="frontend/images/forms1.svg" class="svg-icon" alt="">
-                            <span>已部署链码</span>
+                            <span>已部署合约</span>
                         </a>
                     </li>
 
@@ -124,7 +130,7 @@
                 <div class="content-header">
                     <div class="d-flex align-items-center">
                         <div class="mr-auto">
-                            <h3 class="page-title">已部署的链码信息</h3>
+                            <h3 class="page-title">已部署的合约信息</h3>
                         </div>
                     </div>
                 </div>
@@ -134,7 +140,7 @@
                         <div class="col-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h4 class="box-title">链码相关信息</h4>
+                                    <h4 class="box-title">智能合约相关信息</h4>
                                 </div>
                                 {{if .}}
                                 {{range .}}
@@ -160,7 +166,7 @@
                                                     <td>{{.Validation}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>链码定义批准情况</td>
+                                                    <td>合约定义批准情况</td>
                                                     <td>{{.Approve}}</td>
                                                 </tr>
 
@@ -170,7 +176,7 @@
                                 </div>
                                 {{end}}
                                 {{else}}
-                                <div class="alert alert-warning text-center">未部署任何链码</div>
+                                <div class="alert alert-warning text-center">未部署任何智能合约</div>
                                 {{end}}
                             </div>
                         </div>

@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Hyperledger Fabric链码动态部署系统</title>
+  <title>BUAA-智能合约动态部署系统</title>
 
   <!-- Vendors Style-->
   <link rel="stylesheet" href="css/vendors_css.css">
@@ -74,18 +74,24 @@
                       <span>创建通道</span>
                   </a>
               </li>
+              <li>
+                <a href="http://127.0.0.1:7070/playground" target="blank">
+                  <img src="../images/ico.svg" class="svg-icon" alt="">
+                  <span>智能合约验证</span>
+                </a>
+              </li>
 
               <li>
                   <a href="uploadcc.html">
                       <img src="../images/pages.svg" class="svg-icon" alt="">
-                      <span>上传链码源码</span>
+                      <span>上传智能合约</span>
                   </a>
               </li>
 
               <li>
                   <a href="deploycc.html">
                       <img src="../images/exchange.svg" class="svg-icon" alt="">
-                      <span>模拟部署链码</span>
+                      <span>部署智能合约</span>
                   </a>
               </li>
 
@@ -107,7 +113,7 @@
               <li>
                   <a href="/showcontract">
                       <img src="../images/forms1.svg" class="svg-icon" alt="">
-                      <span>已部署链码</span>
+                      <span>已部署合约</span>
                   </a>
               </li>
 
@@ -132,21 +138,21 @@
         <section class="content">
           <div class="box">
             <div class="box-header">
-              <h5 class="box-title">请上传需要动态部署的链码，选择该链码的语言，并重命名链码名称</h5>
+              <h5 class="box-title">请上传需要动态部署的智能合约，选择该合约的语言，并重命名合约名称</h5>
               <!-- <h6 class="box-subtitle">For multiple file upload put class <code>.dropzone</code> to form.</h6>-->
             </div>
             <div class="box-body">
               <form action="/uploadsuccess" method="POST", enctype="multipart/form-data">
                 <div class="form-group">
-                  <h5>上传链码文件<span class="text-danger">*</span></h5>
+                  <h5>上传合约文件<span class="text-danger">*</span></h5>
                   <div class="controls">
                     <input type="file" name="ccfile" class="form-control" required> </div>
                 </div>
                 <div class="form-group">
-                  <h5>选择链码语言<span class="text-danger">*</span></h5>
+                  <h5>选择合约语言<span class="text-danger">*</span></h5>
                   <div class="controls">
                     <select name="lang" id="select" required class="form-control">
-                      <option disabled="disabled" value="">选择链码语言</option>
+                      <option disabled="disabled" value="">选择合约语言</option>
                       <option value="go">Golang</option>
                       <option value="java">Java</option>
                       <option value="js">Nodejs</option>
@@ -154,13 +160,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <h5>链码名称 <span class="text-danger">*</span></h5>
+                  <h5>合约名称 <span class="text-danger">*</span></h5>
                   <div class="controls">
                     <input type="text" name="ccname" class="form-control" required
                       data-validation-required-message="This field is required"> </div>
                 </div>
                 <div class="form-group">
-                  <h5>链码版本号 <span class="text-danger">*</span></h5>
+                  <h5>合约版本号 <span class="text-danger">*</span></h5>
                   <div class="controls">
                     <input type="text" name="ccversion" class="form-control" required
                       data-validation-required-message="This field is required"> </div>

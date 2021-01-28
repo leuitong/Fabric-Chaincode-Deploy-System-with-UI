@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Hyperledger Fabric链码动态部署系统</title>
+	<title>BUAA-智能合约动态部署系统</title>
 
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="/frontend/main/css/vendors_css.css">
@@ -74,18 +74,24 @@
 							<span>创建通道</span>
 						</a>
 					</li>
+					<li>
+						<a href="http://127.0.0.1:7070/playground" target="blank">
+						  <img src="../images/ico.svg" class="svg-icon" alt="">
+						  <span>智能合约验证</span>
+						</a>
+					  </li>
 	  
 					<li>
 						<a href="uploadcc.html">
 							<img src="../images/pages.svg" class="svg-icon" alt="">
-							<span>上传链码源码</span>
+							<span>上传智能合约</span>
 						</a>
 					</li>
 	  
 					<li>
 						<a href="deploycc.html">
 							<img src="../images/exchange.svg" class="svg-icon" alt="">
-							<span>模拟部署链码</span>
+							<span>部署智能合约</span>
 						</a>
 					</li>
 	  
@@ -107,7 +113,7 @@
 					<li>
 						<a href="/showcontract">
 							<img src="../images/forms1.svg" class="svg-icon" alt="">
-							<span>已部署链码</span>
+							<span>已部署合约</span>
 						</a>
 					</li>
 	  
@@ -153,7 +159,7 @@
 												</div>
 												<div class="flexbox justify-content-center">
 													<button type="submit"
-														class="btn btn-rounded btn-info mb-5">创建</button>
+														class="btn btn-rounded btn-info mb-5" id="create">创建</button>
 												</div>
 									</form>
 
@@ -179,7 +185,13 @@
 
 	<!-- Vendor JS -->
 	<script src="js/vendors.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+	<script src="http://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js?max_age=31536000"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="js/pages/form-validation.js"></script>
+	<script src="js/pages/createchannel.js"></script>
 
 </body>
 
