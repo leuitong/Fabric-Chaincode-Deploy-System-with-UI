@@ -22,9 +22,6 @@ func UnmarshalContract(contract []byte) []Contract {
 		}
 		contractBytes := bytes.FieldsFunc(contract, f)
 		fmt.Printf("Fields are: %q\n", contractBytes)
-		for j := 0; j < len(contractBytes)/19; j++ {
-
-		}
 		for i := 0; i < len(contractBytes)/19; i++ {
 			var contractFields Contract
 			contractBytes[18+19*i] = bytes.Replace(contractBytes[18+19*i], []byte("\n"), []byte(""), -1)

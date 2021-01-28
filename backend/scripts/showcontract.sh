@@ -13,6 +13,6 @@ for line in $(peer channel list | sed '1d')
 do
 for name in $(peer lifecycle chaincode querycommitted --channelID $line | grep Name | awk '{print $2}' | sed 's/,//g')
 do
-peer lifecycle chaincode querycommitted --channelID $line --name $name | grep Version | sed 's/]/&,Name:'$name',Channel:'$line'/'
+peer lifecycle chaincode querycommitted --channelID $line --name $name | grep Version | sed 's/]/&,Name:'$name',Channel:'$line',/'
 done
 done

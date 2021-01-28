@@ -11,7 +11,7 @@ func TestContractUnmarshal(t *testing.T) {
 }
 
 func TestUnmarshalContract(t *testing.T) {
-	contract := "Version: 1, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true],Name:fabcar,Channel:mychannel\n"
+	contract := "Version: 1, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true],Name:test,Channel:buaa,\nVersion: 1, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true],Name:fabcar,Channel:bilibili,\n"
 	contracts := UnmarshalContract([]byte(contract))
 	for k, v := range contracts {
 		fmt.Printf("No.%v===%v\n", k, v)
