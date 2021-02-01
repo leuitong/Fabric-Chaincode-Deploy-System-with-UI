@@ -25,8 +25,6 @@ func main() {
 	http.Handle("/frontend/assets/", http.StripPrefix("/frontend/assets/", http.FileServer(http.Dir("frontend/assets"))))
 	http.Handle("/frontend/images/", http.StripPrefix("/frontend/images/", http.FileServer(http.Dir("frontend/images"))))
 	http.Handle("/frontend/main/", http.StripPrefix("/frontend/main/", http.FileServer(http.Dir("frontend/main"))))
-	//http.Handle("/frontend/assets/", http.StripPrefix("/frontend/assets/", http.FileServer(http.Dir("frontend/assets"))))
-	//http.Handle("/frontend/main/", http.StripPrefix("/frontend/main/", http.FileServer(http.Dir("frontend/main"))))
 
 	http.HandleFunc("/", IndexHandeler)
 	http.HandleFunc("/networkupsuccess", handler.NetworkUp)
@@ -37,6 +35,9 @@ func main() {
 	http.HandleFunc("/shownetwork", handler.ShowNetwork)
 	http.HandleFunc("/showchannel", handler.ShowChannel)
 	http.HandleFunc("/showcontract", handler.ShowContract)
+	http.HandleFunc("/querypromoney", handler.Querypromoney)
+	http.HandleFunc("/querybuymoney", handler.Querybuymoney)
+	http.HandleFunc("/querytransaction", handler.Querytransaction)
 	err := http.ListenAndServe(":"+PORT, nil) // 设置监听的端口
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)

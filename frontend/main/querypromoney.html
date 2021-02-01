@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BUAA-智能合约动态部署系统</title>
+
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="/frontend/main/css/vendors_css.css">
+
+    <!-- Style-->
+    <link rel="stylesheet" href="/frontend/main/css/style.css">
+    <link rel="stylesheet" href="/frontend/main/css/skin_color.css">
+
+</head>
+
+<body class="hold-transition light-skin sidebar-mini theme-primary">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <div class="d-flex align-items-center logo-box pl-20">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <!-- logo-->
+                    <div class="logo-lg">
+                        <span class="light-logo"><img src="../images/logo-dark-text.png" alt="logo"></span>
+                        <span class="dark-logo"><img src="../images/logo-light-text.png" alt="logo"></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top pl-10">
+                <!-- Sidebar toggle button-->
+                <div class="app-menu">
+                    <ul class="header-megamenu nav">
+                        <li class="btn-group nav-item d-md-none">
+                            <a href="#" class="waves-effect waves-light nav-link rounded push-btn"
+                                data-toggle="push-menu" role="button">
+                                <img src="../images/svg-icon/collapse.svg" class="img-fluid svg-icon" alt="">
+                            </a>
+                        </li>
+                        <li class="btn-group d-md-inline-flex d-none">
+                            <div class="search-bx ml-10">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar-->
+            <section class="sidebar">
+              <!-- sidebar menu-->
+      
+              <ul class="sidebar-menu" data-widget="tree">
+                <li class="header"> 部署流程 </li>
+                <li>
+                  <a href="networkup.html">
+                    <img src="../images/dashboard.svg" class="svg-icon" alt="">
+                    <span>启动测试网络</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="createchannel.html">
+                    <img src="../images/layout.svg" class="svg-icon" alt="">
+                    <span>创建通道</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://127.0.0.1:7070/playground" target="blank">
+                    <img src="../images/ico.svg" class="svg-icon" alt="">
+                    <span>智能合约验证</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="uploadcc.html">
+                    <img src="../images/pages.svg" class="svg-icon" alt="">
+                    <span>上传智能合约</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="deploycc.html">
+                    <img src="../images/exchange.svg" class="svg-icon" alt="">
+                    <span>部署智能合约</span>
+                  </a>
+                </li>
+
+                <li class="header"> 执行智能合约 </li>
+                <li>
+                  <a href="invoke.html">
+                    <img src="../images/transactions.svg" class="svg-icon" alt="">
+                    <span>转账</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="querypromoney.html">
+                    <img src="../images/multilevel.svg" class="svg-icon" alt="">
+                    <span>查询提供商余额</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="querybuymoney.html">
+                    <img src="../images/forms1.svg" class="svg-icon" alt="">
+                    <span>查询购买方余额</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="querytransaction.html">
+                    <img src="../images/invoice.svg" class="svg-icon" alt="">
+                    <span>查看交易具体内容</span>
+                  </a>
+                </li>
+      
+                <li class="header"> 部署结果 </li>
+                <li>
+                  <a href="/shownetwork">
+                    <img src="../images/forms2.svg" class="svg-icon" alt="">
+                    <span>已启动网络</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="/showchannel">
+                    <img src="../images/multilevel.svg" class="svg-icon" alt="">
+                    <span>已创建通道</span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a href="/showcontract">
+                    <img src="../images/forms1.svg" class="svg-icon" alt="">
+                    <span>已部署合约</span>
+                  </a>
+                </li>
+      
+              </ul>
+            </section>
+          </aside>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="container-full">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
+                            <h3 class="page-title">查询提供商余额</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <!-- Basic Forms -->
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h5 class="box-title">输入通道名称和合约名称后，点击“查询”</h4>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="/querypromoney" method="POST">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <h5>通道名称</h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="channelname" class="form-control"
+                                                            id="channelname" /> </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h5>合约名称 <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="chaincodename" class="form-control"
+                                                            id="chaincodename" required
+                                                            data-validation-required-message="This field is required" />
+                                                    </div>
+                                                </div>
+                                                <div class="flexbox justify-content-center">
+                                                    <button type="submit" class="btn btn-rounded btn-info mb-5"
+                                                        id="create">查询</button>
+                                                </div>
+                                    </form>
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Vendor JS -->
+    <script src="js/vendors.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <script src="http://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js?max_age=31536000"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="js/pages/form-validation.js"></script>
+
+</body>
+
+</html>
