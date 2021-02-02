@@ -91,7 +91,7 @@ func (t *ChainCode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 // Transaction makes payment of X units from A to B
 func (t *ChainCode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var providerledger, buyerledger int // Asset holdings
-	var transactionInfos TransactionInfo
+	transactionInfos := new(TransactionInfo)
 	var X int // Transaction value
 	var err error
 
@@ -99,30 +99,25 @@ func (t *ChainCode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.R
 		return shim.Error("Incorrect number of arguments. Expecting 2")
 	}
 
-	transactionInfos.TransactionID = args[0]
+	//transactionInfos.TransactionID = args[0]
 
 	// Get the state from the ledger
 	// TODO: will be nice to have a GetAllState call to ledger
-	resultsIterator, err := stub.GetHistoryForKey(transactionInfos.TransactionID)
+	tranBytes, err := stub.GetState(args[0])
+	fmt.Printf("=======+%v\n", tranBytes)
+
+	//resultsIterator, err := stub.GetHistoryForKey(transactionInfos.TransactionID)
 	if err != nil {
 		return shim.Error("Failed to get state")
 	}
-	defer resultsIterator.Close()
+	//defer resultsIterator.Close()
 
 	var transactionPro ProviderInfo
 	var transactionBuy BuyerInfo
-	for resultsIterator.HasNext() {
-
-		response, err := resultsIterator.Next()
-		if err != nil {
-			return shim.Error(err.Error())
-		}
-		json.Unmarshal(response.Value, &transactionInfos)
-		if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
-			transactionPro = transactionInfos.TransactionPro
-			transactionBuy = transactionInfos.TransactionBuy
-			continue
-		}
+	json.Unmarshal(tranBytes, transactionInfos)
+	if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
+		transactionPro = transactionInfos.TransactionPro
+		transactionBuy = transactionInfos.TransactionBuy
 	}
 	providerledger, _ = strconv.Atoi(string(transactionPro.ProviderLedger))
 	buyerledger, _ = strconv.Atoi(string(transactionBuy.BuyerLedger))
@@ -139,8 +134,10 @@ func (t *ChainCode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.R
 	transactionInfos.TransactionBuy.BuyerLedger = strconv.Itoa(buyerledger)
 	// Write the state back to the ledger
 	transactionInfosJSONasBytes, err := json.Marshal(transactionInfos)
+	fmt.Printf("=====%+v\n", transactionInfos)
+	fmt.Printf("=====%v\n", transactionInfosJSONasBytes)
 
-	err = stub.PutState(transactionInfos.TransactionID, transactionInfosJSONasBytes)
+	err = stub.PutState(args[0], transactionInfosJSONasBytes)
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -150,37 +147,33 @@ func (t *ChainCode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.R
 
 // query callback representing the query of a chaincode
 func (t *ChainCode) querypromoney(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	var transactionInfos TransactionInfo
+	transactionInfos := new(TransactionInfo)
 	var err error
 
 	if len(args) != 1 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
 	}
 
-	transactionInfos.TransactionID = args[0]
+	//transactionInfos.TransactionID = args[0]
 
 	// Get the state from the ledger
 	// TODO: will be nice to have a GetAllState call to ledger
-	resultsIterator, err := stub.GetHistoryForKey(transactionInfos.TransactionID)
+	//resultsIterator, err := stub.GetHistoryForKey(transactionInfos.TransactionID)
+	tranBytes, err := stub.GetState(args[0])
+	fmt.Printf("=======+%v\n", tranBytes)
+
 	if err != nil {
 		return shim.Error("Failed to get state")
 	}
-	defer resultsIterator.Close()
+	//defer resultsIterator.Close()
 
 	var transactionPro ProviderInfo
-
-	for resultsIterator.HasNext() {
-		response, err := resultsIterator.Next()
-		if err != nil {
-			return shim.Error(err.Error())
-		}
-		json.Unmarshal(response.Value, &transactionInfos)
-		if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
-			transactionPro = transactionInfos.TransactionPro
-			continue
-		}
+	json.Unmarshal(tranBytes, transactionInfos)
+	fmt.Printf("=======+%v\n", transactionInfos)
+	if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
+		transactionPro = transactionInfos.TransactionPro
 	}
-
+	fmt.Printf("=======+%v\n", transactionPro)
 	jsonsAsBytes, err := json.Marshal(transactionPro)
 	if err != nil {
 		return shim.Error(err.Error())
@@ -191,35 +184,27 @@ func (t *ChainCode) querypromoney(stub shim.ChaincodeStubInterface, args []strin
 }
 
 func (t *ChainCode) querybuymoney(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	var transactionInfos TransactionInfo
+	transactionInfos := new(TransactionInfo)
 	var err error
-
 	if len(args) != 1 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
 	}
 
-	transactionInfos.TransactionID = args[0]
+	//transactionInfos.TransactionID = args[0]
 
-	// Get the state from the ledger
-	// TODO: will be nice to have a GetAllState call to ledger
-	resultsIterator, err := stub.GetHistoryForKey(transactionInfos.TransactionID)
+	tranBytes, err := stub.GetState(args[0])
+	fmt.Printf("=======+%v\n", tranBytes)
+
 	if err != nil {
 		return shim.Error("Failed to get state")
 	}
-	defer resultsIterator.Close()
+	//defer resultsIterator.Close()
 
 	var transactionBuy BuyerInfo
-
-	for resultsIterator.HasNext() {
-		response, err := resultsIterator.Next()
-		if err != nil {
-			return shim.Error(err.Error())
-		}
-		json.Unmarshal(response.Value, &transactionInfos)
-		if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
-			transactionBuy = transactionInfos.TransactionBuy
-			continue
-		}
+	json.Unmarshal(tranBytes, &transactionInfos)
+	fmt.Printf("=======+%v\n", transactionInfos)
+	if (transactionInfos.TransactionPro.ProviderLedger != "") && (transactionInfos.TransactionBuy.BuyerLedger != "") {
+		transactionBuy = transactionInfos.TransactionBuy
 	}
 
 	jsonsAsBytes, err := json.Marshal(transactionBuy)
