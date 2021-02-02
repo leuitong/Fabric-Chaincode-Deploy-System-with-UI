@@ -11,19 +11,23 @@ type Buyer struct {
 	Buycredit string
 }
 
-func UnmarshalBuyer(buyer []byte) Buyer {
-	var buyer1 Buyer
+func UnmarshalBuyer(buyer []byte) []Buyer {
 	if len(buyer) != 0 {
+		var buyers []Buyer
 		f := func(r rune) bool {
-			return bytes.ContainsRune([]byte(": ,{}\""), r)
+			return bytes.ContainsRune([]byte(": ,[]\n{}\""), r)
 		}
 		buyerBytes := bytes.FieldsFunc(buyer, f)
-		fmt.Printf("Fields are: %q\n", buyerBytes)
-		buyer1.Buyname = string(buyerBytes[1])
-		buyer1.Buymoney = string(buyerBytes[3])
-		buyer1.Buycredit = string(buyerBytes[5])
-		return buyer1
+		for i := 0; i < len(buyerBytes)/6; i++ {
+			var buyer1 Buyer
+			fmt.Printf("Fields are: %q\n", buyerBytes)
+			buyer1.Buyname = string(buyerBytes[1+i*6])
+			buyer1.Buymoney = string(buyerBytes[3+i*6])
+			buyer1.Buycredit = string(buyerBytes[5+i*6])
+			buyers = append(buyers, buyer1)
+		}
+		return buyers
 	} else {
-		return buyer1
+		return nil
 	}
 }
