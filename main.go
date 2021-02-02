@@ -38,6 +38,7 @@ func main() {
 	http.HandleFunc("/querypromoney", handler.Querypromoney)
 	http.HandleFunc("/querybuymoney", handler.Querybuymoney)
 	http.HandleFunc("/querytransaction", handler.Querytransaction)
+	http.HandleFunc("/invokesuccess", handler.Invoke)
 	err := http.ListenAndServe(":"+PORT, nil) // 设置监听的端口
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
